@@ -1,5 +1,5 @@
 import nltk
-
+import streamlit as st
 def init_nltk():
     try:
         nltk.data.find('tokenizers/punkt')
@@ -11,7 +11,7 @@ def init_nltk():
 init_nltk()
 
 # Continue with your other imports and definitions
-import streamlit as st
+
 from joblib import load
 import re
 import pandas as pd
