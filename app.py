@@ -4,10 +4,10 @@ def init_nltk():
     try:
         nltk.data.find('tokenizers/punkt')
     except LookupError:
-        print("NLTK resource not found. Attempting to download...")
-        nltk.download('punkt')
+        st.warning("NLTK resource not found. Attempting to download...")
+        nltk.download('punkt', quiet=True)  # Suppress NLTK output during download
 
-# Initialize NLTK resources
+# Call init_nltk() to ensure NLTK resources are ready
 init_nltk()
 
 # Continue with your other imports and definitions
