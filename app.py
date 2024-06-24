@@ -1,7 +1,7 @@
 import nltk
 import streamlit as st
 # Specify your custom NLTK data path
-custom_nltk_data_path = [r'C:\Users\Nikita\nltk_data']  # Adjust this path to your chosen directory
+custom_nltk_data_path = [r'C:\\Users\\Nikita/nltk_data']  # Adjust this path to your chosen directory
 
 # Add the custom path to NLTK's data path
 nltk.data.path.extend(custom_nltk_data_path)
