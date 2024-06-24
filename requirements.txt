@@ -4,4 +4,4 @@ nltk
 plotly
 wordcloud
 matplotlib
-sklearn
+scikit-learn
