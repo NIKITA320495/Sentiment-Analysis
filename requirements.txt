@@ -1,0 +1,8 @@
+joblib
+pandas
+nltk
+plotly
+wordcloud
+matplotlib
+scikit-learn
+
