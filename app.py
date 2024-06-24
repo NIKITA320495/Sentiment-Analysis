@@ -1,14 +1,18 @@
 import nltk
 import streamlit as st
-def init_nltk():
-    try:
-        nltk.data.find('tokenizers/punkt')
-    except LookupError:
-        st.warning("NLTK resource not found. Attempting to download...")
-        nltk.download('punkt', quiet=True)  # Suppress NLTK output during download
+# Specify your custom NLTK data path
+custom_nltk_data_path = [r'C:\Users\Nikita\nltk_data']  # Adjust this path to your chosen directory
 
-# Call init_nltk() to ensure NLTK resources are ready
-init_nltk()
+# Add the custom path to NLTK's data path
+nltk.data.path.extend(custom_nltk_data_path)
+
+# Download specific NLTK resources if missing
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    print("NLTK resource not found. Attempting to download...")
+    nltk.download('punkt', download_dir=custom_nltk_data_path[0])
+
 
 # Continue with your other imports and definitions
 
