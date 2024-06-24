@@ -22,11 +22,11 @@ if not os.path.exists(custom_nltk_data_path):
 nltk.data.path.append(custom_nltk_data_path)
 
 # Download specific NLTK resources if not already available
-resources = ['punkt', 'stopwords']
+resources = ['punkt', 'stopwords', 'wordnet']
 
 for resource in resources:
     try:
-        nltk.data.find(f'{resource}')
+        nltk.data.find(resource)
         print(f"{resource} is already available.")
     except LookupError:
         print(f"{resource} not found. Downloading...")
