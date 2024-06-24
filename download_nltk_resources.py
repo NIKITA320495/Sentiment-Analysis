@@ -1,2 +1,7 @@
 import nltk
-nltk.download()
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    print("NLTK resource not found. Attempting to download...")
+    nltk.download('punkt')
