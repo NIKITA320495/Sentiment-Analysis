@@ -2,6 +2,7 @@ import streamlit as st
 from joblib import load
 import re
 import pandas as pd
+import nltk 
 from nltk.corpus import stopwords
 import plotly.express as px
 from nltk.tokenize import word_tokenize
@@ -10,6 +11,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 df=pd.read_csv('linkedin-reviews.csv')
+nltk.download('punkt')
 # Initialize components
 lemmatizer = WordNetLemmatizer()
 def preprocess_text(text):
