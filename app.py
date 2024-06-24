@@ -7,14 +7,14 @@ def init_nltk():
         print("NLTK resource not found. Attempting to download...")
         nltk.download('punkt')
 
-# Call init_nltk() to ensure NLTK resources are ready
+# Initialize NLTK resources
 init_nltk()
 
+# Continue with your other imports and definitions
 import streamlit as st
 from joblib import load
 import re
 import pandas as pd
-import nltk 
 from nltk.corpus import stopwords
 import plotly.express as px
 from nltk.tokenize import word_tokenize
@@ -22,9 +22,14 @@ from nltk.stem import WordNetLemmatizer
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-df=pd.read_csv('linkedin-reviews.csv')
-# Initialize components
+
+# Load your data
+df = pd.read_csv('linkedin-reviews.csv')
+
+# Initialize components (like WordNetLemmatizer)
 lemmatizer = WordNetLemmatizer()
+
+# Define preprocess_text function
 def preprocess_text(text):
     text = re.sub(r'<.*?>', '', text)  # Remove HTML tags if any
     text = re.sub(r'[^a-zA-Z]', ' ', text)  # Remove non-alphabetic characters
@@ -34,7 +39,10 @@ def preprocess_text(text):
     tokens = [lemmatizer.lemmatize(word) for word in tokens if word not in stop_words]
     return ' '.join(tokens)
 
+# Load your model and tfidf vectorizer
 rf, tfidf = load('model_and_tfidf.joblib')
+
+# Define functions for plotting rating distributions
 def plot_rating_distribution(df, column_name):
     value_counts = df[column_name].value_counts()
     
@@ -54,22 +62,8 @@ def plot_rating_distribution(df, column_name):
     
     # Display plot using Streamlit
     st.plotly_chart(fig)
-def predict_sentiment(comment):
-    # Preprocess the comment
-    preprocessed_comment = preprocess_text(comment)
-    
-    # Transform the preprocessed comment using tfidf vectorizer
-    tfidf_vector = tfidf.transform([preprocessed_comment]).toarray()
-    
-    # Predict the sentiment using the classifier
-    predicted_numerical_sentiment = rf.predict(tfidf_vector)[0]  # Assuming clf.predict returns a single prediction
-    
-    # Map prediction to sentiment label
-    predicted_sentiment = 'positive' if predicted_numerical_sentiment == 1 else 'negative'
-    
-    return predicted_sentiment
-# Main function to run the Streamlit app
 
+# Define function for plotting rating percentage pie chart
 def plot_rating_percentage_pie(df, column_name):
     percentage = df[column_name].value_counts(normalize=True) * 100
     
@@ -85,6 +79,8 @@ def plot_rating_percentage_pie(df, column_name):
     
     # Display plot using Streamlit
     st.plotly_chart(fig)
+
+# Define function for generating word cloud
 def generate_wordcloud(text):
     # Initialize CountVectorizer
     cv = CountVectorizer()
@@ -104,6 +100,8 @@ def generate_wordcloud(text):
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis('off')
     st.pyplot(plt)
+
+# Define function for analyzing sentiment
 def analyze_sentiment(df):
     # Separate comments based on sentiment (assuming 'Rating' column for this example)
     positive_comments = df[df['Rating'] >= 3]['Review'].apply(preprocess_text)
@@ -116,16 +114,39 @@ def analyze_sentiment(df):
     # Generate word cloud for negative comments
     st.subheader('Top 10 Words in Negative Comments')
     generate_wordcloud(negative_comments)
+
+# Define function for predicting sentiment of a comment
+def predict_sentiment(comment):
+    # Preprocess the comment
+    preprocessed_comment = preprocess_text(comment)
+    
+    # Transform the preprocessed comment using tfidf vectorizer
+    tfidf_vector = tfidf.transform([preprocessed_comment]).toarray()
+    
+    # Predict the sentiment using the classifier
+    predicted_numerical_sentiment = rf.predict(tfidf_vector)[0]  # Assuming clf.predict returns a single prediction
+    
+    # Map prediction to sentiment label
+    predicted_sentiment = 'positive' if predicted_numerical_sentiment == 1 else 'negative'
+    
+    return predicted_sentiment
+
+# Define main function to run the Streamlit app
 def main():
     st.title('Sentiment Analysis of Linkedin Reviews')
+    
+    # Display preview of the dataset
     st.subheader('Preview of the Dataset')
     st.dataframe(df.head(10))
-    st.subheader('Some analysis on the dataset')
+    
+    # Perform some analysis on the dataset
+    st.subheader('Some Analysis on the Dataset')
     plot_rating_distribution(df, 'Rating')
     plot_rating_percentage_pie(df, 'Rating')
     analyze_sentiment(df)
+    
     # Input box for user to enter text
-    st.subheader('Try your own comment:')
+    st.subheader('Try Your Own Comment:')
     comment = st.text_area('Enter your comment:')
     
     if st.button('Predict'):
@@ -135,7 +156,7 @@ def main():
         else:
             # Perform prediction
             prediction = predict_sentiment(comment)
-            if prediction=='positive':
+            if prediction == 'positive':
                 st.success(f'The sentiment of the comment is: {prediction}')
             else:
                 st.error(f'The sentiment of the comment is: {prediction}')
