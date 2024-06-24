@@ -16,7 +16,7 @@ resources = ['punkt', 'stopwords']
 
 for resource in resources:
     try:
-        nltk.data.find(f'tokenizers/{resource}')
+        nltk.data.find(f'{resource}')
         print(f"{resource} is already available.")
     except LookupError:
         print(f"{resource} not found. Downloading...")
