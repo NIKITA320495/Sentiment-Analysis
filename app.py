@@ -1,3 +1,15 @@
+import nltk
+
+def init_nltk():
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        print("NLTK resource not found. Attempting to download...")
+        nltk.download('punkt')
+
+# Call init_nltk() to ensure NLTK resources are ready
+init_nltk()
+
 import streamlit as st
 from joblib import load
 import re
