@@ -11,7 +11,6 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 df=pd.read_csv('linkedin-reviews.csv')
-nltk.download('punkt')
 # Initialize components
 lemmatizer = WordNetLemmatizer()
 def preprocess_text(text):
