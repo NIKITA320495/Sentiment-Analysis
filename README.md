@@ -15,7 +15,12 @@ This project performs sentiment analysis on LinkedIn reviews to extract insights
 ![Streamlit App Screenshot](./images/interface-1.png)
 ![Streamlit App Screenshot](./images/interface-2.png)
 
+## Analysis on dataset
+![Streamlit App Screenshot](./images/Graph-1.png)
+![Streamlit App Screenshot](./images/pie-1.png)
 ## Model Selection: Multinomial Naive Bayes
+
+![Streamlit App Screenshot](./images/multinomial.png)
 
 Among several classifiers tested for sentiment analysis on LinkedIn reviews, Multinomial Naive Bayes (MNB) demonstrated the highest test accuracy:
 
