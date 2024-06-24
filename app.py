@@ -1,3 +1,11 @@
+import os
+
+# Set NLTK_DATA environment variable
+os.environ['NLTK_DATA'] = 'C:\\Users\\Nikita\\AppData\\Roaming\\nltk_data'
+
+
+import nltk
+nltk.download('punkt')
 import streamlit as st
 from joblib import load
 import re
