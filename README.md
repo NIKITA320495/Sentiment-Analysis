@@ -1,4 +1,5 @@
 # LinkedIn Reviews Sentiment Analysis
+You can access the running web app here: [LinkedIn Reviews Sentiment Analysis App](https://nikita320495-sentiment-analysis-app-4ghpu0.streamlit.app/)
 
 ## Overview
 
