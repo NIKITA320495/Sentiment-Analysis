@@ -10,14 +10,8 @@ from nltk.stem import WordNetLemmatizer
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-
-import nltk
-import os
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
 # Define your NLTK data path explicitly
-custom_nltk_data_path = r'C:\Users\Nikita\nltk_data'
+custom_nltk_data_path = r'C:\\Users\\Nikita\\nltk_data'
 # Ensure the directory exists, create it if necessary
 if not os.path.exists(custom_nltk_data_path):
     os.makedirs(custom_nltk_data_path)
