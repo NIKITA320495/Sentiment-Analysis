@@ -11,29 +11,10 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
-# Define your NLTK data path explicitly
-custom_nltk_data_path = r'C:\Users\Nikita\nltk_data'
+# Download specific NLTK resources
 nltk.download('punkt')
-# Ensure the directory exists, create it if necessary
-if not os.path.exists(custom_nltk_data_path):
-    os.makedirs(custom_nltk_data_path)
-
-# Set NLTK data path
-nltk.data.path.append(custom_nltk_data_path)
-
-# Download specific NLTK resources if not already available
-resources = ['punkt', 'stopwords', 'wordnet']
-
-for resource in resources:
-    try:
-        nltk.data.find(resource)
-        print(f"{resource} is already available.")
-    except LookupError:
-        print(f"{resource} not found. Downloading...")
-        nltk.download(resource, download_dir=custom_nltk_data_path)
-
-# Check if NLTK can find its resources now
-print("NLTK Data Path:", nltk.data.path)
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 # Initialize components
 lemmatizer = WordNetLemmatizer()
