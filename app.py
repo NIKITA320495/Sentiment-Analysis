@@ -13,7 +13,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
 # Define your NLTK data path explicitly
 custom_nltk_data_path = r'C:\Users\Nikita\nltk_data'
-nltk.download('punkt', download_dir=custom_nltk_data_path)
+nltk.download('punkt')
 # Ensure the directory exists, create it if necessary
 if not os.path.exists(custom_nltk_data_path):
     os.makedirs(custom_nltk_data_path)
