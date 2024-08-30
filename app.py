@@ -11,6 +11,9 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
+import nltk
+import os
+
 # Define your NLTK data path explicitly
 custom_nltk_data_path = r'C:\Users\Nikita\nltk_data'
 # Ensure the directory exists, create it if necessary
@@ -25,14 +28,12 @@ resources = ['punkt', 'stopwords', 'wordnet']
 
 for resource in resources:
     try:
-        nltk.data.find(resource)
+        nltk.data.find(f'tokenizers/{resource}')
         print(f"{resource} is already available.")
     except LookupError:
         print(f"{resource} not found. Downloading...")
         nltk.download(resource, download_dir=custom_nltk_data_path)
 
-# Check if NLTK can find its resources now
-print("NLTK Data Path:", nltk.data.path)
 
 # Initialize components
 lemmatizer = WordNetLemmatizer()
