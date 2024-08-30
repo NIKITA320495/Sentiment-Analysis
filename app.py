@@ -20,7 +20,7 @@ if not os.path.exists(custom_nltk_data_path):
 nltk.data.path.append(custom_nltk_data_path)
 
 # Download specific NLTK resources if not already available
-resources = ['punkt', 'stopwords', 'wordnet']
+resources = ['punkt_tab', 'stopwords', 'wordnet']
 
 for resource in resources:
     try:
